@@ -92,4 +92,5 @@ $(document).keydown(function (e) {
             }
         }, period);
     }
-}).on('click', showItem);
+}).on('click', showItem)
+    .live('touchstart', showItem);
