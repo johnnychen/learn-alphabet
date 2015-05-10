@@ -1,95 +1,36 @@
-var array = [];
-var element = $('#container');
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.6/animate.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.css">
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script type="text/javascript"
+			src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</head>
+<body>
 
-function buildArray() {
-    array = [];
-    var i;
-    for (i = 0; i < 26; i++) {
-        array.push(String.fromCharCode(65 + i));
-        array.push(String.fromCharCode(97 + i));
-    }
-    element.html('');
-}
+<style>
+	body {
+		background-color: #EEEEEE;
+		font-family: arial;
 
+	}
 
-function showItem() {
-    var char = getRandomAlphabet();
-    if (char) {
-        $('<div class="item animated flipInX"> ' + char + '</div>').appendTo(element);
-        resize();
-        console.log('click');
-    }
-}
+	.item {
+		float: left;
+		-moz-user-select: none;
+		-khtml-user-select: none;
+		-webkit-user-select: none;
+		user-select: none;
+	}
+</style>
 
+<div id="container" class="util-clearfix">
 
-function resize() {
-    var elBody = $('body'),
-        elWindow = $(window);
-    elBody.css({
-        padding: '40px 100px 60px'
-    });
+</div>
 
-    var itemWidth, itemHeight, fontSize;
-    var width = elWindow.width() - 220,
-        height = elWindow.height() - 100;
-
-    itemWidth = width / 13;
-    itemHeight = height / 4;
-
-    fontSize = itemWidth;
-    if (itemHeight < fontSize) {
-        fontSize = itemHeight;
-    }
-
-    element.find('.item').css({
-        fontSize: fontSize,
-        width: itemWidth,
-        height: itemHeight,
-        'line-height': itemHeight + 'px'
-    });
-}
-
-buildArray();
-showItem();
-//console.log(array);
-
-function getRandomAlphabet() {
-    var len = array.length;
-
-    if (!len) {
-        if (window.confirm('所有字母都学习完啦！是否重新学习？')) {
-            buildArray();
-            showItem();
-        }
-        return;
-    }
-    var index = Math.floor(Math.random() * len);
-    var rtn = array[index];
-
-    array.splice(index, 1);//删除；
-//    console.log(array);
-
-    return rtn;
-}
-
-
-$(document).keydown(function (e) {
-    if (e.keyCode == 32) {
-        showItem();
-    } else if (e.keyCode) {
-        var reg = /^#time=(\d+)/;
-        var str = location.hash;
-        var match = str.match(reg);
-        var period = 500;
-        if (match && match[1]) {
-            period = Number(match[1]);
-        }
-        var interval = setInterval(function () {
-            if (array.length) {
-                showItem();
-            } else {
-                window.clearInterval(interval); //清楚定时器
-            }
-        }, period);
-    }
-}).on('click', showItem);
+<script src="./main.js"></script>
+</body>
+</html>
