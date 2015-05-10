@@ -26,15 +26,20 @@ function resize() {
     var elBody = $('body'),
         elWindow = $(window);
     elBody.css({
-        padding: '40px 100px 60px'
+        padding: '30px 50px 70px'
     });
 
     var itemWidth, itemHeight, fontSize;
-    var width = elWindow.width() - 220,
+    var width = elWindow.width() - 100,
         height = elWindow.height() - 100;
 
-    itemWidth = width / 13;
-    itemHeight = height / 4;
+    if (width > height) {
+        itemWidth = width / 13;
+        itemHeight = height / 4;
+    } else {
+        itemWidth = width / 4;
+        itemHeight = height / 13;
+    }
 
     fontSize = itemWidth;
     if (itemHeight < fontSize) {
